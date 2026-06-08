@@ -49,7 +49,7 @@ Ensure you have Python 3.10+ and a local MySQL server running.
    ```
 3. **Install Environment Dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip install -r ../requirements.txt
    ```
 4. **Configure Local Database Settings:**
    Open `college/college/settings.py` and ensure the `DATABASES` block matches your local MySQL server hostname and database credentials (default is `college_db` on `localhost`).

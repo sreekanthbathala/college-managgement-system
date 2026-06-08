@@ -43,13 +43,13 @@ Ensure you have Python 3.10+ and a local MySQL server running.
    # On Windows PowerShell
    .\venv\Scripts\Activate.ps1
    ```
-2. **Navigate to the Django Application Directory:**
-   ```powershell
-   cd college
-   ```
-3. **Install Environment Dependencies:**
+2. **Install Environment Dependencies:**
    ```bash
    pip install -r requirements.txt
+   ```
+3. **Navigate to the Django Application Directory:**
+   ```powershell
+   cd college
    ```
 4. **Configure Local Database Settings:**
    Open `college/college/settings.py` and ensure the `DATABASES` block matches your local MySQL server hostname and database credentials (default is `college_db` on `localhost`).
