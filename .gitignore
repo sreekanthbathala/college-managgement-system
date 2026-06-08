@@ -1,0 +1,13 @@
+# Python / Django
+venv/
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+
+# Node.js / Vite
+node_modules/
+dist/
+
+# Local backups
+.git.bak/
