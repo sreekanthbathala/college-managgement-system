@@ -71,6 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'college.wsgi.application'
+ASGI_APPLICATION = 'college.asgi.application'
 
 
 # Database
