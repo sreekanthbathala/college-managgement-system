@@ -237,7 +237,7 @@ def check_login_rate_limit(request: Request):
     if len(login_attempts[ip]) >= 5:
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail="Request limit exceeded. Try again later."
+            detail="Request limit exceeded. Try again after a minute."
         )
     login_attempts[ip].append(now)
 

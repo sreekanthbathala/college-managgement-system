@@ -9,20 +9,19 @@ sys.path.append(os.getcwd())
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'college.settings')
 django.setup()
 
-from django.test import Client
-from django.urls import reverse
-import json
+from fastapi.testclient import TestClient
+from college.asgi import app
 
 def run_test():
     print("==================================================")
     print("Simulating Admin Session & API Dashboard Audit")
     print("==================================================")
     
-    client = Client()
+    client = TestClient(app)
     
     # 1. Attempt API login as HOD Admin
     print("Attempting authentication as HOD Admin ('admin') via API...")
-    response = client.post(reverse('api_login'), {
+    response = client.post("/api/auth/login/", json={
         'username': 'admin',
         'password': 'admin123'
     })
@@ -36,14 +35,16 @@ def run_test():
         print(f"  * First Name Mapped:           PASSED ({data.get('first_name')})")
     else:
         print("[ERROR] Admin login failed. Seed data missing or incorrect.")
+        if response.status_code == 400 or response.status_code == 422:
+            print(f"Details: {response.text}")
         return
         
     # 2. Access Admin Dashboard Stats
     print("\nRequesting HOD Dashboard Stats API ('/api/dashboard/stats/')...")
     # Include Token in the headers
     response = client.get(
-        reverse('api_dashboard_stats'),
-        HTTP_AUTHORIZATION=f'Token {token}'
+        "/api/dashboard/stats/",
+        headers={"Authorization": f"Token {token}"}
     )
     print(f"Result: API Status Code = {response.status_code}")
     
@@ -75,3 +76,4 @@ def run_test():
 
 if __name__ == '__main__':
     run_test()
+

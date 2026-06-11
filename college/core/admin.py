@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+# pyrefly: ignore [missing-import]
 from .models import CustomeUser, AdminProfile, StaffProfile, StudentProfile, SessionYear, Course, Subject, Attendance, AttendanceReport, Result
 
 
@@ -33,7 +34,10 @@ class StudentProfileAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'user__email', 'Registration_number')
 
 admin.site.register(SessionYear)
-admin.site.register(Course)
+# admin.site.register(Course)
+@admin.register(Course)
+class CourseTable(admin.ModelAdmin):
+    list_display=['course_name','created_at']
 admin.site.register(Subject)
 admin.site.register(Attendance)
 admin.site.register(AttendanceReport)

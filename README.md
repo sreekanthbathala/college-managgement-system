@@ -62,11 +62,13 @@ Ensure you have Python 3.10+ and a local MySQL server running.
    ```bash
    python seed_data.py
    ```
-7. **Launch the Web App:**
+7. **Launch the Web App (ASGI Server):**
+   Since the API endpoints are handled by FastAPI mounted within our Django ASGI application, you must run the server using `uvicorn` (running `python manage.py runserver` only launches WSGI and will result in 404s on `/api/...` endpoints):
    ```bash
-   python manage.py runserver
+   uvicorn college.asgi:application --reload
    ```
    Open `http://127.0.0.1:8000/` in your browser.
+
 
 ---
 
